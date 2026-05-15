@@ -10,16 +10,16 @@ def pedir_nombre_completo():
     while True: 
         nombre = input("Ingrese el nombre del empleado (un solo nombre): ").strip()
         if not nombre: 
-            print("  ❌ Error: El nombre no puede estar vacío.")
+            print("   \033[31mError: El nombre no puede estar vacío.\033[39m")
             continue
         if not all(c.isalpha() or c.isspace() for c in nombre): 
-            print("  ❌ Error: Solo se permiten letras.")
+            print("   \033[31m Error: Solo se permiten letras.\033[39m")
             continue
             
         palabras_nombre = nombre.split() 
         # Exigimos estrictamente 1 sola palabra
         if len(palabras_nombre) != 1:
-            print("  ❌ Error: Debe ingresar exactamente UN SOLO nombre (sin espacios).")
+            print("   Error: Debe ingresar exactamente UN SOLO nombre (sin espacios).")
             continue
         break
 
@@ -27,16 +27,16 @@ def pedir_nombre_completo():
     while True: 
         apellido = input("Ingrese el apellido del empleado (un solo apellido): ").strip()
         if not apellido: 
-            print("  ❌ Error: El apellido no puede estar vacío.")
+            print("   Error: El apellido no puede estar vacío.")
             continue
         if not all(c.isalpha() or c.isspace() for c in apellido): 
-            print("  ❌ Error: Solo se permiten letras.")
+            print("   Error: Solo se permiten letras.")
             continue
             
         palabras_apellido = apellido.split() 
         # Exigimos estrictamente 1 sola palabra
         if len(palabras_apellido) != 1:
-            print("  ❌ Error: Debe ingresar exactamente UN SOLO apellido (sin espacios).")
+            print("   Error: Debe ingresar exactamente UN SOLO apellido (sin espacios).")
             continue
         break
         
@@ -51,9 +51,9 @@ def pedir_horas_validas(dia):
             if 0 <= horas <= 15:
                 return horas
             else:
-                print("  ❌ Error: Las horas diarias deben estar entre 0 y 15.")
+                print("   Error: Las horas diarias deben estar entre 0 y 15.")
         except ValueError:
-            print("  ❌ Error: Entrada inválida. Ingrese un valor numérico.")
+            print("   Error: Entrada inválida. Ingrese un valor numérico.")
 
 def evaluar_jornada(fila_empleado):
     """
@@ -71,7 +71,7 @@ def evaluar_jornada(fila_empleado):
     return total_horas, clasificacion
 
 def main():
-    print("=== 🏢 SISTEMA DE CONTROL DE HORAS (RRHH) ===")
+    print("\n===  SISTEMA DE CONTROL DE HORAS (RRHH) ===")
     
     matriz_horas =[]
     dias_semana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"]
@@ -91,16 +91,16 @@ def main():
 
     # 2. MÓDULO DE SALIDA Y REPORTE
     print("\n" + "="*50)
-    print("📊 REPORTE FINAL DE JORNADAS SEMANALES")
+    print(" REPORTE FINAL DE JORNADAS SEMANALES")
     print("="*50)
     
     for fila in matriz_horas:
         nombre = fila[0]
         total_horas, clasificacion = evaluar_jornada(fila)
         
-        print(f"👤 Recurso: {nombre.upper()}")
-        print(f"   ⏱️ Total Horas: {total_horas} hrs")
-        print(f"   🏷️ Clasificación: {clasificacion}\n")
+        print(f" Recurso: {nombre.upper()}")
+        print(f"    Total Horas: {total_horas} hrs")
+        print(f"    Clasificación: {clasificacion}\n")
 
 if __name__ == "__main__":
     main()
